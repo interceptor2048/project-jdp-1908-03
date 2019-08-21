@@ -40,5 +40,4 @@ public class User {
     @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
     private User userId;
-
 }
