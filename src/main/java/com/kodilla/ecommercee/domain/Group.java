@@ -1,22 +1,22 @@
 package com.kodilla.ecommercee.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Dawid Nogacz on 21.08.2019
  */
-
-@Entity(name = "products")
+@Entity(name = "groups")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Product {
+public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,14 +25,10 @@ public class Product {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "price")
-    private BigDecimal price;
-
-    @ManyToOne
-    @JoinColumn(name = "group_id", nullable = false)
-    @JsonBackReference
-    private Group groupId;
+    @OneToMany(
+            targetEntity = Product.class,
+            fetch = FetchType.LAZY
+    )
+    @JsonManagedReference
+    private List<Product> products = new ArrayList<>();
 }
