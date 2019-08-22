@@ -27,6 +27,7 @@ public class Group {
 
     @OneToMany(
             targetEntity = Product.class,
+            cascade = CascadeType.PERSIST,
             fetch = FetchType.LAZY
     )
     @JsonManagedReference
