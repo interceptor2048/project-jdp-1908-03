@@ -34,5 +34,5 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "group_id", nullable = false)
     @JsonBackReference
-    private Group groupId;
+    private Group group;
 }

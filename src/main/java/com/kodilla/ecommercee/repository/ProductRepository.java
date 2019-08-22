@@ -10,7 +10,6 @@ import java.util.List;
 /**
  * @author Dawid Nogacz on 21.08.2019
  */
-@Transactional
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Long> {
     List<Product> findAll();

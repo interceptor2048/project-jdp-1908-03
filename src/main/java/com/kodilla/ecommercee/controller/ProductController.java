@@ -2,7 +2,7 @@ package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.controller.exceptions.ProductNotFoundException;
 import com.kodilla.ecommercee.domain.Product;
-import com.kodilla.ecommercee.repository.ProductRepository;
+import com.kodilla.ecommercee.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,35 +11,35 @@ import java.util.List;
 @CrossOrigin("*")
 @RequestMapping(value = "v1/product", produces = "application/json")
 public class ProductController {
-    private ProductRepository productRepository;
+    private ProductService productService;
 
-    public ProductController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
     @GetMapping(value = "getProduct")
     public Product getProduct(@RequestParam Long id) throws ProductNotFoundException {
-        return productRepository.findById(id).orElseThrow(ProductNotFoundException::new);
+        return productService.getProduct(id).orElseThrow(ProductNotFoundException::new);
     }
 
     @GetMapping(value = "getProducts")
     public List<Product> getProducts() {
-        return productRepository.findAll();
+        return productService.getProducts();
     }
 
     @PostMapping(value = "addProduct", consumes = "application/json")
     public void addProduct(@RequestBody Product product) {
-        productRepository.save(product);
+        productService.saveProduct(product);
     }
 
     @PutMapping(value = "updateProduct", consumes = "application/json")
     public void updateProduct(@RequestBody Product product) {
-        productRepository.save(product);
+        productService.saveProduct(product);
     }
 
     @DeleteMapping(value = "deleteProduct")
     public void deleteProduct(@RequestParam Long id) throws ProductNotFoundException {
-        Product product = productRepository.findById(id).orElseThrow(ProductNotFoundException::new);
-        productRepository.delete(product);
+        Product product = productService.getProduct(id).orElseThrow(ProductNotFoundException::new);
+        productService.deleteProduct(product);
     }
 }
