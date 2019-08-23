@@ -3,7 +3,6 @@ package com.kodilla.ecommercee.mapper;
 import com.kodilla.ecommercee.controller.exceptions.GroupNotFoundException;
 import com.kodilla.ecommercee.domain.Group;
 import com.kodilla.ecommercee.dto.GroupDto;
-import com.kodilla.ecommercee.service.ProductService;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,11 +13,9 @@ import java.util.stream.Collectors;
  */
 @Component
 public class GroupMapper {
-    private ProductService productService;
     private ProductMapper productMapper;
 
-    public GroupMapper(ProductService productService, ProductMapper productMapper) {
-        this.productService = productService;
+    public GroupMapper(ProductMapper productMapper) {
         this.productMapper = productMapper;
     }
 

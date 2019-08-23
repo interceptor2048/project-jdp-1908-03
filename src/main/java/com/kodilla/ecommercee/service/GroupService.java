@@ -28,8 +28,8 @@ public class GroupService {
         return groupRepository.findAll();
     }
 
-    public void saveGroup(Group group) {
-        groupRepository.save(group);
+    public Group saveGroup(Group group) {
+        return groupRepository.save(group);
     }
 
     public void deleteGroup(Group group) {

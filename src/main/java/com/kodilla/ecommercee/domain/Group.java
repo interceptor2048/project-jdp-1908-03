@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Dawid Nogacz on 21.08.2019
@@ -28,7 +28,20 @@ public class Group {
     @OneToMany(
             targetEntity = Product.class,
             cascade = CascadeType.PERSIST,
-            fetch = FetchType.LAZY
+            fetch = FetchType.EAGER
     )
     private List<Product> products = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Group group = (Group) o;
+        return Objects.equals(id, group.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
