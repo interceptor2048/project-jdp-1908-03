@@ -38,6 +38,5 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    @JsonBackReference
     private User userId;
 }
