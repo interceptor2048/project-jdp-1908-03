@@ -23,7 +23,7 @@ public class UserController {
     }
     @GetMapping(value = "getUsers")
     public List<User> getUsers() {
-        return (List<User>) userRepository.findAll();
+        return userRepository.findAll();
     }
     @PostMapping(value = "addUser", consumes = "application/json")
     public void addUser(@RequestBody User user) {
