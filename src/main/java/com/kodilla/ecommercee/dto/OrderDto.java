@@ -7,6 +7,9 @@ public class OrderDto {
     private Long id;
     private String name;
 
+    public OrderDto() {
+    }
+
     public OrderDto(Long id, String name) {
         this.id = id;
         this.name = name;

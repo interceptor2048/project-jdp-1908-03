@@ -33,12 +33,12 @@ public class OrderController {
 
     @PostMapping(value = "createOrder", consumes = APPLICATION_JSON_VALUE)
     public void createOrder(@RequestBody OrderDto orderDto) {
-        orderRepository.save(new Order());
+        orderRepository.save(new Order(orderDto.getName()));
     }
 
     @PutMapping(value = "updateOrder")
     public OrderDto updateOrder(@RequestBody Order order) {
-        return new OrderDto(1L, "EXAMPLE");
+        return new OrderDto(order.getId(), order.getName());
     }
 
     @DeleteMapping(value = "deleteOrder")
