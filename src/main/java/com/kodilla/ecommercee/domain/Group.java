@@ -30,6 +30,5 @@ public class Group {
             cascade = CascadeType.PERSIST,
             fetch = FetchType.LAZY
     )
-    @JsonManagedReference
     private List<Product> products = new ArrayList<>();
 }
