@@ -8,9 +8,6 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @author Dawid Nogacz on 22.08.2019
- */
 @Component
 public class GroupMapper {
     private ProductMapper productMapper;

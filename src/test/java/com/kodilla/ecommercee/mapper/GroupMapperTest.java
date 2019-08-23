@@ -14,9 +14,6 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Dawid Nogacz on 23.08.2019
- */
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 public class GroupMapperTest {

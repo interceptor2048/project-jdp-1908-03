@@ -8,10 +8,6 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-/**
- * @author Dawid Nogacz on 21.08.2019
- */
-
 @Entity(name = "products")
 @NoArgsConstructor
 @AllArgsConstructor

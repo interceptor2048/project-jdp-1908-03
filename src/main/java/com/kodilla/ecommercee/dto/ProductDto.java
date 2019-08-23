@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import java.math.BigDecimal;
 
-/**
- * @author Dawid Nogacz on 22.08.2019
- */
 @AllArgsConstructor
 @Data
 public class ProductDto {

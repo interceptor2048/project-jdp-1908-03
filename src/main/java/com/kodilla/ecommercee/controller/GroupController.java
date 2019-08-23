@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * @author Dawid Nogacz on 21.08.2019
- */
 @RestController
 @CrossOrigin("*")
 @RequestMapping(value = "v1/group", produces = "application/json")

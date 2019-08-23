@@ -11,9 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @author Dawid Nogacz on 22.08.2019
- */
 @Component
 public class ProductMapper {
     private GroupService groupService;

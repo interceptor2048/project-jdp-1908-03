@@ -6,9 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * @author Dawid Nogacz on 21.08.2019
- */
 @Repository
 public interface GroupRepository extends CrudRepository<Group, Long> {
     List<Group> findAll();

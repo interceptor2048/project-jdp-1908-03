@@ -8,9 +8,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @author Dawid Nogacz on 22.08.2019
- */
 @Service
 @Transactional
 public class GroupService {
