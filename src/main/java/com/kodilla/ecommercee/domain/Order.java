@@ -44,10 +44,11 @@ public class Order {
                fetch = FetchType.EAGER)
     private List<Product> productList = new ArrayList<>();
 
-    @NotNull
+    //TODO Add reference to User when it is created...
+/*    @NotNull
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User user;*/
 
     @Override
     public boolean equals(Object o) {
