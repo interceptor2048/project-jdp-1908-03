@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.List;
 
 @Entity(name = "users")
 @NoArgsConstructor
@@ -39,10 +37,10 @@ public class User {
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
-    @OneToMany(
-            targetEntity = User.class,
-            fetch = FetchType.LAZY
-    )
+    @OneToMany(targetEntity = Order.class,
+            mappedBy = "user",
+            fetch = FetchType.LAZY)
+
     @JsonManagedReference
-    private List<User> users = new ArrayList<> ();
+    private List<Order> users = new ArrayList<> ();
 }
