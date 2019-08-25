@@ -30,7 +30,7 @@ public class ProductServiceTest {
     public void getProduct() throws ProductNotFoundException {
         //Given
         Group group = new Group(1L, "Test", new ArrayList<>());
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100.00), group);
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100.00), group, new ArrayList<>());
 
         groupService.saveGroup(group);
         productService.saveProduct(product);
@@ -48,9 +48,9 @@ public class ProductServiceTest {
         //Given
         Group group = new Group(1L, "Test", new ArrayList<>());
 
-        Product productOne = new Product(1L, "Test", "Test", new BigDecimal(100), group);
-        Product productTwo = new Product(2L, "Test", "Test", new BigDecimal(100), group);
-        Product productThree = new Product(3L, "Test", "Test", new BigDecimal(100), group);
+        Product productOne = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
+        Product productTwo = new Product(2L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
+        Product productThree = new Product(3L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
 
         groupService.saveGroup(group);
         productService.saveProduct(productOne);
@@ -69,7 +69,7 @@ public class ProductServiceTest {
     public void saveProduct() {
         //Given
         Group group = new Group(1L, "Test", new ArrayList<>());
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group);
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
 
         groupService.saveGroup(group);
         //When
@@ -84,7 +84,7 @@ public class ProductServiceTest {
     public void deleteProduct() {
         //Given
         Group group = new Group(1L, "Test", new ArrayList<>());
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group);
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
         groupService.saveGroup(group);
         productService.saveProduct(product);
 

@@ -34,7 +34,7 @@ public class ProductMapperTest {
     public void mapToProductDto() {
         //Given
         Group group = new Group(1L, "Test", new ArrayList<>());
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group);
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
 
         //When
         ProductDto productDto = productMapper.mapToProductDto(product);
@@ -71,9 +71,9 @@ public class ProductMapperTest {
 
         Group group = new Group(1L, "Test", new ArrayList<>());
 
-        Product productOne = new Product(1L, "Test", "Test", new BigDecimal(100), group);
-        Product productTwo = new Product(2L, "Test", "Test", new BigDecimal(100), group);
-        Product productThree = new Product(3L, "Test", "Test", new BigDecimal(100), group);
+        Product productOne = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
+        Product productTwo = new Product(2L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
+        Product productThree = new Product(3L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
 
         products.add(productOne);
         products.add(productTwo);

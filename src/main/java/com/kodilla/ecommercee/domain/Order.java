@@ -38,11 +38,8 @@ public class Order {
     @Column(name = "delivered_date")
     private LocalDate deliveredDate;
 
-    @OneToMany(targetEntity = Product.class,
-               mappedBy = "order",
-               cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-               fetch = FetchType.EAGER)
-    private List<Product> productList = new ArrayList<>();
+    @ManyToMany(mappedBy = "orders")
+    private List<Product> products = new ArrayList<>();
 
     //TODO Add reference to User when it is created...
 /*    @NotNull

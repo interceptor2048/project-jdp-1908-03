@@ -5,8 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "products")
@@ -32,10 +33,11 @@ public class Product {
     @JoinColumn(name = "group_id", nullable = false)
     private Group group;
 
-    @ManyToOne
-    @NotNull
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "join_product_order",
+               joinColumns = {@JoinColumn(name = "product_id")},
+               inverseJoinColumns = {@JoinColumn(name = "order_id")})
+    private List<Order> orders = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
