@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.persistence.criteria.Order;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "users")
 @NoArgsConstructor
