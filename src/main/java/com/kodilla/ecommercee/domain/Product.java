@@ -34,7 +34,7 @@ public class Product {
     private Group group;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "join_product_order",
+    @JoinTable(name = "products_orders",
                joinColumns = {@JoinColumn(name = "product_id")},
                inverseJoinColumns = {@JoinColumn(name = "order_id")})
     private List<Order> orders = new ArrayList<>();
