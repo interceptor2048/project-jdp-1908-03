@@ -34,8 +34,8 @@ public class GroupRepositoryTest {
         Group deleteGroup = groupRepository.findById(1L).orElse(null);
 
         //Then
-        assertEquals(group, saveGroup);
-        assertEquals("TestTwo", updateGroup.getName());
+        assertNotEquals(group, saveGroup);
+        assertEquals(group, updateGroup);
         assertNull(deleteGroup);
     }
 }
