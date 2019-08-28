@@ -3,8 +3,10 @@ package com.kodilla.ecommercee.service;
 import com.kodilla.ecommercee.controller.exceptions.ProductNotFoundException;
 import com.kodilla.ecommercee.domain.Group;
 import com.kodilla.ecommercee.domain.Product;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.internal.matchers.apachecommons.ReflectionEquals;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
@@ -39,7 +41,8 @@ public class ProductServiceTest {
         Product getProduct = productService.getProduct(1L).orElseThrow(ProductNotFoundException::new);
 
         //Then
-        assertEquals(product, getProduct);
+        assertTrue(new ReflectionEquals(product, "price").matches(getProduct));
+        assertThat(product.getPrice(),  Matchers.comparesEqualTo(getProduct.getPrice()));
     }
 
     @Test
