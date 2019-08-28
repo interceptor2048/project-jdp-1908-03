@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.persistence.criteria.Order;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +39,7 @@ public class User {
     private String phoneNumber;
 
     @OneToMany(targetEntity = Order.class,
+            cascade = CascadeType.PERSIST,
             mappedBy = "user",
             fetch = FetchType.LAZY)
 
