@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity(name = "products")
 @NoArgsConstructor
@@ -33,7 +32,8 @@ public class Product {
     @JoinColumn(name = "group_id", nullable = false)
     private Group group;
     
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL,
+                fetch = FetchType.EAGER)
     @JoinTable(name = "products_orders",
                joinColumns = {@JoinColumn(name = "product_id")},
                inverseJoinColumns = {@JoinColumn(name = "order_id")})
