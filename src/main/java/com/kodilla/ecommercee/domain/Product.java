@@ -32,23 +32,10 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "group_id", nullable = false)
     private Group group;
-
+    
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "products_orders",
                joinColumns = {@JoinColumn(name = "product_id")},
                inverseJoinColumns = {@JoinColumn(name = "order_id")})
     private List<Order> orders = new ArrayList<>();
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(id, product.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
