@@ -2,6 +2,7 @@ package com.kodilla.ecommercee.mapper;
 
 import com.kodilla.ecommercee.controller.exceptions.GroupNotFoundException;
 import com.kodilla.ecommercee.domain.Group;
+import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.dto.ProductDto;
 import com.kodilla.ecommercee.service.GroupService;
@@ -37,7 +38,9 @@ public class ProductMapper {
                 productDto.getName(),
                 productDto.getDescription(),
                 productDto.getPrice(),
-                group
+                group,
+                // TODO - add order when order service will be created
+                new ArrayList<>()
         );
     }
 
