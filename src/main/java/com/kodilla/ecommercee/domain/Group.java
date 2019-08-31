@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "groups")
+@Entity(name = "groups_of_products")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
