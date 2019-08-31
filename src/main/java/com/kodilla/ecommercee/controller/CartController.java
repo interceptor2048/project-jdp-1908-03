@@ -1,39 +1,49 @@
 package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.controller.exeptions.CartNotFoundException;
+import com.kodilla.ecommercee.domain.Product;
+import com.kodilla.ecommercee.dto.OrderDto;
+import com.kodilla.ecommercee.dto.ProductDto;
+import com.kodilla.ecommercee.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
+
 @RestController
-@RequestMapping(value = "v1/cart/",produces = "application/json")
+@RequestMapping(value = "v1/cart/")
 @CrossOrigin("*")
 
 public class CartController {
 
-    private CartService cartService;
-    private CartMapper cartMapper;
+    @Autowired
+    private ProductRepository productRepository;
 
-    public CartController(CartService cartService, CartMapper cartMapper) {
-        this.cartService = cartService;
-        this.cartMapper = cartMapper;
+    @PostMapping(value = "createNewCart", consumes = APPLICATION_JSON_VALUE)
+    public List<Product> createNewCart() {
+        return new ArrayList<> ();
     }
-    @PostMapping(value = "createNewCart",consumes = "application/json")
-    public void createNewCart(@RequestBody CartDto cartDto) {
-        cartService.createNewCart(cartMapper.mapToCart(cartDto));
+    @GetMapping(value = "getProductFromCart")
+    public List<Product> getProductFromCart(@RequestParam("productId") Long productId) {
+        return new ArrayList<> ();
     }
-    @GetMapping(value = "getItemsFromCart")
-    public CartDto getItemsFromCart(@RequestParam long cartId) throws CartNotFoundException {
-        return cartMapper.mapToCartDto(cartService.getCart(cartId).orElseThrow(CartNotFoundException::new));
+    @PostMapping(value = "addProductToCart", consumes = APPLICATION_JSON_VALUE)
+    public ProductDto addProductToCart() {
+        return new ProductDto (2L, "example product2", "description", new BigDecimal (100), (long) 2);
     }
-    @PostMapping(value = "addItemToCart",consumes = "application/json")
-    public CartDto addItemToCart(@RequestParam long cartId, @RequestBody ProductItem productItem) throws CartNotFoundException{
-        return cartMapper.mapToCartDto(cartService.addItemToCard(cartId, productItem));
+    @DeleteMapping(value = "deleteProductFromCart")
+    public void deleteProductFromCard(@RequestParam long cartId, @RequestParam long productId) {
+        productRepository.deleteById (productId);
     }
-    @DeleteMapping(value = "removeItemFromCart")
-    public CartDto removeItemFromCard(@RequestParam long cartId, @RequestParam long itemId) throws CartNotFoundException{
-        return cartMapper.mapToCartDto(cartService.removeItemFromCard(cartId, itemId));
-    }
-    @PostMapping(value = "createOrder", consumes = "application/json")
-    public OrderDto createOrder(@RequestBody OrderDto orderDto) {
-        return orderMapper.mapToOrderDto(orderService.saveOrder(orderMapper.mapToOrder(orderDto)));
+    @PostMapping(value = "createOrder", consumes = APPLICATION_JSON_VALUE)
+    public OrderDto createOrder(@RequestBody ProductDto productDto) {
+        return new OrderDto ();
     }
 }
+
+
+
+
