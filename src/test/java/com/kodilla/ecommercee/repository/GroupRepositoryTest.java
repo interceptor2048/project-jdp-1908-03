@@ -25,7 +25,7 @@ public class GroupRepositoryTest {
         groupRepository.save(group);
     }
 
-    /*@Test
+    @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void create() {
         //Given
@@ -37,7 +37,7 @@ public class GroupRepositoryTest {
 
         //Then
         assertEquals(2, count);
-    }*/
+    }
 
     @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
