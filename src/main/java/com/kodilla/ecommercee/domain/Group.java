@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-@Entity(name = "groups")
+@Entity(name = "groups_of_products")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -25,20 +24,9 @@ public class Group {
     @OneToMany(
             targetEntity = Product.class,
             cascade = CascadeType.PERSIST,
+            mappedBy = "id",
             fetch = FetchType.EAGER
     )
     private List<Product> products = new ArrayList<>();
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Group group = (Group) o;
-        return Objects.equals(id, group.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
+

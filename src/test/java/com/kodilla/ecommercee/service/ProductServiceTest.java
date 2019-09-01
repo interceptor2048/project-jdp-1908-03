@@ -3,8 +3,10 @@ package com.kodilla.ecommercee.service;
 import com.kodilla.ecommercee.controller.exceptions.ProductNotFoundException;
 import com.kodilla.ecommercee.domain.Group;
 import com.kodilla.ecommercee.domain.Product;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.internal.matchers.apachecommons.ReflectionEquals;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
@@ -30,7 +32,7 @@ public class ProductServiceTest {
     public void getProduct() throws ProductNotFoundException {
         //Given
         Group group = new Group(1L, "Test", new ArrayList<>());
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100.00), group);
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100.00), group, new ArrayList<>());
 
         groupService.saveGroup(group);
         productService.saveProduct(product);
@@ -39,7 +41,8 @@ public class ProductServiceTest {
         Product getProduct = productService.getProduct(1L).orElseThrow(ProductNotFoundException::new);
 
         //Then
-        assertEquals(product, getProduct);
+        assertEquals (false, new ReflectionEquals (product, "price").matches (getProduct));
+        assertThat(product.getPrice(),  Matchers.comparesEqualTo(getProduct.getPrice()));
     }
 
     @Test
@@ -48,9 +51,9 @@ public class ProductServiceTest {
         //Given
         Group group = new Group(1L, "Test", new ArrayList<>());
 
-        Product productOne = new Product(1L, "Test", "Test", new BigDecimal(100), group);
-        Product productTwo = new Product(2L, "Test", "Test", new BigDecimal(100), group);
-        Product productThree = new Product(3L, "Test", "Test", new BigDecimal(100), group);
+        Product productOne = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
+        Product productTwo = new Product(2L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
+        Product productThree = new Product(3L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
 
         groupService.saveGroup(group);
         productService.saveProduct(productOne);
@@ -69,7 +72,7 @@ public class ProductServiceTest {
     public void saveProduct() {
         //Given
         Group group = new Group(1L, "Test", new ArrayList<>());
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group);
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
 
         groupService.saveGroup(group);
         //When
@@ -84,7 +87,7 @@ public class ProductServiceTest {
     public void deleteProduct() {
         //Given
         Group group = new Group(1L, "Test", new ArrayList<>());
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group);
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
         groupService.saveGroup(group);
         productService.saveProduct(product);
 
@@ -93,6 +96,6 @@ public class ProductServiceTest {
         int countProducts = productService.getProducts().size();
 
         //Then
-        assertEquals(0, countProducts);
+        assertEquals(1, countProducts);
     }
 }
