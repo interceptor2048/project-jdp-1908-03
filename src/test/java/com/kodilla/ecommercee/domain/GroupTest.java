@@ -105,7 +105,7 @@ public class GroupTest {
     }
 
     @Test
-    public void testEqualsAndHashcode() {
+    public void equals() {
         //Given
         Group groupOne = new Group(1L, "Test", new ArrayList<>());
         Group groupTwo = new Group(1L, "Test", new ArrayList<>());

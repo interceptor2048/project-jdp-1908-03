@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,20 +17,24 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
+    @NotNull
     private String name;
 
-    @Column(name = "description")
+    @Column(name = "description", nullable = false)
+    @NotNull
     private String description;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
+    @NotNull
     private BigDecimal price;
 
     @ManyToOne
     @JoinColumn(name = "group_id", nullable = false)
+    @NotNull
     private Group group;
     
     @ManyToMany(cascade = CascadeType.ALL,
