@@ -20,21 +20,21 @@ public class Product {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name", nullable = false)
     @NotNull
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "description", nullable = false)
     @NotNull
+    @Column(name = "description")
     private String description;
 
-    @Column(name = "price", nullable = false)
     @NotNull
+    @Column(name = "price")
     private BigDecimal price;
 
-    @ManyToOne
-    @JoinColumn(name = "group_id", nullable = false)
     @NotNull
+    @ManyToOne
+    @JoinColumn(name = "group_id")
     private Group group;
     
     @ManyToMany(cascade = CascadeType.ALL,

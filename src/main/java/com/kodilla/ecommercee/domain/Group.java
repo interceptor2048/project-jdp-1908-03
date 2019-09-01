@@ -23,6 +23,7 @@ public class Group {
 
     @OneToMany(
             targetEntity = Product.class,
+            mappedBy = "group",
             cascade = CascadeType.PERSIST,
             fetch = FetchType.EAGER
     )
