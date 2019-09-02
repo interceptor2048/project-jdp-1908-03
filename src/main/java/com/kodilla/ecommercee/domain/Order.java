@@ -1,6 +1,10 @@
 package com.kodilla.ecommercee.domain;
 
+<<<<<<< HEAD
 import lombok.*;
+=======
+import lombok.AllArgsConstructor;
+>>>>>>> b10fef649581f82a855b411eaf00d0d987ff230f
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

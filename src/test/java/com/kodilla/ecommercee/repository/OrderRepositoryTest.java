@@ -5,11 +5,18 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+<<<<<<< HEAD
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import static com.kodilla.ecommercee.domain.Status.OPEN;
+=======
+import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Optional;
+
+>>>>>>> b10fef649581f82a855b411eaf00d0d987ff230f
 import static org.junit.Assert.*;
 
 @SpringBootTest
@@ -17,6 +24,7 @@ import static org.junit.Assert.*;
 public class OrderRepositoryTest {
     @Autowired
     private OrderRepository orderRepository;
+<<<<<<< HEAD
 
     @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
@@ -46,3 +54,32 @@ public class OrderRepositoryTest {
         assertEquals(null, deletedRepository);
     }
 }
+=======
+    private static final String NAME = "test entity order name";
+
+    @Test
+    public void testSaveOrderEntity() {
+        //Given
+        Order order = new Order(NAME);
+
+        //When
+        Order createOrder = orderRepository.save(order);
+
+        //Then
+        assertEquals(order, createOrder);
+    }
+
+    @Test
+    public void testUpdateOrderEntity() {
+        //Given
+        Order order = new Order(NAME);
+
+        //When
+        order.setName("New test name");
+        Order orderUpdated = orderRepository.save(order);
+
+        //Then
+        assertEquals("New test name", orderUpdated.getName());
+    }
+}
+>>>>>>> b10fef649581f82a855b411eaf00d0d987ff230f
