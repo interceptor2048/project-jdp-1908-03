@@ -27,4 +27,8 @@ public class Group {
             fetch = FetchType.EAGER
     )
     private List<Product> products = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "cart_id", nullable = false)
+    private Cart cart;
 }
