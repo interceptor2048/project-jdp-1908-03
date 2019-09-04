@@ -44,5 +44,5 @@ public class User {
             fetch = FetchType.LAZY)
 
     @JsonManagedReference
-    private List<Order> users = new ArrayList<> ();
+    private List<Order> users = new ArrayList<>();
 }
