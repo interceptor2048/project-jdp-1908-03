@@ -29,7 +29,7 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public void deleteProduct(Product product) {
-        productRepository.delete(product);
+    public void deleteProduct(Long id) {
+        productRepository.deleteById(id);
     }
 }
