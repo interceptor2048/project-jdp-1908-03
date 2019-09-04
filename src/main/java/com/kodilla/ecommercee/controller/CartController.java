@@ -35,7 +35,7 @@ public class CartController {
         return new ProductDto (2L, "example product2", "description", new BigDecimal (100), (long) 2);
     }
     @DeleteMapping(value = "deleteProductFromCart")
-    public void deleteProductFromCard(@RequestParam long cartId, @RequestParam long productId) {
+    public void deleteProductFromCard(@RequestParam ("cartId") Long cartId, @RequestParam("productId") Long productId) {
         productRepository.deleteById (productId);
     }
     @PostMapping(value = "createOrder", consumes = APPLICATION_JSON_VALUE)
