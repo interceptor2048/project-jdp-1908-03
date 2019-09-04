@@ -41,8 +41,8 @@ public class Order {
     private List<Product> products = new ArrayList<>();
 
     //TODO Add reference to User when it is created...
-/*    @NotNull
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;*/
+    private User user;
 }

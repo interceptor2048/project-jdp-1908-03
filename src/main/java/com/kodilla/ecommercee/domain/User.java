@@ -40,7 +40,7 @@ public class User {
 
     @OneToMany(targetEntity = Order.class,
             cascade = CascadeType.PERSIST,
-            mappedBy = "id",
+            mappedBy = "user",
             fetch = FetchType.LAZY)
 
     @JsonManagedReference
