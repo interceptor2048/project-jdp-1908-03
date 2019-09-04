@@ -29,7 +29,7 @@ public class GroupRepositoryTest {
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void create() {
         //Given
-        Group group = new Group(null, "Test", new ArrayList<>());
+        Group group = new Group(2L, "Test", new ArrayList<>());
 
         //When
         groupRepository.save(group);
