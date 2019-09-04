@@ -6,7 +6,6 @@ import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.internal.matchers.apachecommons.ReflectionEquals;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
@@ -26,10 +25,9 @@ public class ProductRepositoryTest {
     @Autowired
     private GroupRepository groupRepository;
 
-    private Group group = new Group(1L, "Test", new ArrayList<>());
-
     @Before
     public void prepareDatabase() {
+        Group group = new Group(1L, "Test", new ArrayList<>());
         Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
 
         groupRepository.save(group);
@@ -40,6 +38,7 @@ public class ProductRepositoryTest {
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void create() {
         //Given
+        Group group = new Group(1L, "Test", new ArrayList<>());
         Product product = new Product(2L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
 
         //When
@@ -54,20 +53,25 @@ public class ProductRepositoryTest {
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void read() {
         //Given
+        Group group = new Group(1L, "Test", new ArrayList<>());
         Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
 
         //When
         Product getProduct = productRepository.findById(1L).orElse(null);
 
         //Then
-        assertTrue(new ReflectionEquals(product, "price").matches(getProduct));
+        assertEquals(product.getId(), getProduct.getId());
+        assertEquals(product.getName(), getProduct.getName());
+        assertEquals(product.getDescription(), getProduct.getDescription());
         assertThat(new BigDecimal(100),  Matchers.comparesEqualTo(getProduct.getPrice()));
+        assertEquals(product.getGroup().getId(), getProduct.getGroup().getId());
     }
 
     @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void update() {
         //Given
+        Group group = new Group(1L, "Test", new ArrayList<>());
         Product product = new Product(1L, "TestTwo", "TestTwo", new BigDecimal(100), group, new ArrayList<>());
 
         //When
@@ -75,8 +79,11 @@ public class ProductRepositoryTest {
         Product getProduct = productRepository.findById(1L).orElse(null);
 
         //Then
-        assertTrue(new ReflectionEquals(product, "price").matches(getProduct));
+        assertEquals(product.getId(), getProduct.getId());
+        assertEquals(product.getName(), getProduct.getName());
+        assertEquals(product.getDescription(), getProduct.getDescription());
         assertThat(new BigDecimal(100),  Matchers.comparesEqualTo(getProduct.getPrice()));
+        assertEquals(product.getGroup().getId(), getProduct.getGroup().getId());
     }
 
     @Test

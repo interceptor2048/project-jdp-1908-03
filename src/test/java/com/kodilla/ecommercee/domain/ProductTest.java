@@ -184,7 +184,7 @@ public class ProductTest {
     }
 
     @Test
-    public void equals() {
+    public void equalsAndHashCode() {
         //Given
         Product productOne = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>());
         Product productTwo = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>());

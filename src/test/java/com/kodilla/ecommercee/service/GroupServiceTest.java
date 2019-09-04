@@ -77,7 +77,7 @@ public class GroupServiceTest {
         groupService.saveGroup(group);
 
         //When
-        groupService.deleteGroup(group);
+        groupService.deleteGroup(1L);
         int countGroup = groupService.getGroups().size();
 
         //Then

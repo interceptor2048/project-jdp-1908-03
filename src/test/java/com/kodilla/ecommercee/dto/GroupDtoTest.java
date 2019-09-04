@@ -103,7 +103,7 @@ public class GroupDtoTest {
     }
 
     @Test
-    public void equals() {
+    public void equalsAndHashCode() {
         //Given
         GroupDto groupDtoOne = new GroupDto(1L, "Test", new ArrayList<>());
         GroupDto groupDtoTwo = new GroupDto(1L, "Test", new ArrayList<>());

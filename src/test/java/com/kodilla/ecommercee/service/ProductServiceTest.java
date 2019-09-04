@@ -6,7 +6,6 @@ import com.kodilla.ecommercee.domain.Product;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.internal.matchers.apachecommons.ReflectionEquals;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
@@ -32,7 +31,7 @@ public class ProductServiceTest {
     public void getProduct() throws ProductNotFoundException {
         //Given
         Group group = new Group(1L, "Test", new ArrayList<>());
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100.00), group, new ArrayList<>());
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
 
         groupService.saveGroup(group);
         productService.saveProduct(product);
@@ -41,8 +40,11 @@ public class ProductServiceTest {
         Product getProduct = productService.getProduct(1L).orElseThrow(ProductNotFoundException::new);
 
         //Then
-        assertTrue(new ReflectionEquals(product, "price").matches(getProduct));
-        assertThat(product.getPrice(),  Matchers.comparesEqualTo(getProduct.getPrice()));
+        assertEquals(product.getId(), getProduct.getId());
+        assertEquals(product.getName(), getProduct.getName());
+        assertEquals(product.getDescription(), getProduct.getDescription());
+        assertThat(new BigDecimal(100),  Matchers.comparesEqualTo(getProduct.getPrice()));
+        assertEquals(product.getGroup().getId(), getProduct.getGroup().getId());
     }
 
     @Test
@@ -87,12 +89,13 @@ public class ProductServiceTest {
     public void deleteProduct() {
         //Given
         Group group = new Group(1L, "Test", new ArrayList<>());
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
+        Product product = new Product(null, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
+
         groupService.saveGroup(group);
         productService.saveProduct(product);
 
         //When
-        productService.deleteProduct(product);
+        productService.deleteProduct(1L);
         int countProducts = productService.getProducts().size();
 
         //Then
