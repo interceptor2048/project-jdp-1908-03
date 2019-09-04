@@ -1,33 +1,21 @@
 package com.kodilla.ecommercee.dto;
 
-/**
- * Author Kamil Seweryn
- */
+import com.kodilla.ecommercee.domain.Product;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+import java.util.List;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class OrderDto {
     private Long id;
-    private String name;
-
-    public OrderDto() {
-    }
-
-    public OrderDto(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    //private String status;
+    private LocalDate orderDate;
+    private LocalDate sendDate;
+    private LocalDate deliveredDate;
+    private List<Product> products;
 }
