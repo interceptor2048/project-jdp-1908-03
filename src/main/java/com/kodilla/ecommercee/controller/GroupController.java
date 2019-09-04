@@ -48,7 +48,7 @@ public class GroupController {
         Group group = groupService.getGroup(id).orElseThrow(GroupNotFoundException::new);
 
         if(group.getProducts().isEmpty()) {
-            groupService.deleteGroup(group);
+            groupService.deleteGroup(id);
         } else {
             throw new GroupNotEmptyException();
         }
