@@ -27,13 +27,26 @@ public class Cart {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "quantity")
+    private int quantity;
+
     @Column(name = "price")
     private BigDecimal price;
 
+    @Column(name = "group_id")
+    private Group group;
+
     @OneToMany(
-            targetEntity = Group.class,
-            cascade = CascadeType.PERSIST,
+            targetEntity = Product.class,
+            mappedBy = "cart",
+            cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
-    List<Group> groups = new ArrayList<>();
+    List<Product> products = new ArrayList<>();
+
+    /*
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user; */
+
 }

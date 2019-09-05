@@ -43,4 +43,8 @@ public class Product {
                joinColumns = {@JoinColumn(name = "product_id")},
                inverseJoinColumns = {@JoinColumn(name = "order_id")})
     private List<Order> orders = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 }
