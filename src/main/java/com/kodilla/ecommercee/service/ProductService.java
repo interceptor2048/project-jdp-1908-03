@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.service;
 
+import com.kodilla.ecommercee.controller.exceptions.ProductNotFoundException;
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,13 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public void deleteProduct(Long id) {
-        productRepository.deleteById(id);
+    public void deleteProduct(Long id) throws ProductNotFoundException {
+        Optional<Product> product = getProduct(id);
+
+        if(product.isPresent()) {
+            productRepository.deleteById(id);
+        } else {
+            throw new ProductNotFoundException();
+        }
     }
 }

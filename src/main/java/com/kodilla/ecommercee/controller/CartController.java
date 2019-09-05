@@ -3,8 +3,6 @@ package com.kodilla.ecommercee.controller;
 import com.kodilla.ecommercee.dto.OrderDto;
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.dto.ProductDto;
-import com.kodilla.ecommercee.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -18,9 +16,6 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 @CrossOrigin("*")
 
 public class CartController {
-
-    @Autowired
-    private ProductRepository productRepository;
 
     @PostMapping(value = "createNewCart", consumes = APPLICATION_JSON_VALUE)
     public void createNewCart() {}
