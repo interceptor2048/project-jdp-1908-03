@@ -42,7 +42,7 @@ public class Order {
 
     //TODO Add reference to User when it is created...
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 }

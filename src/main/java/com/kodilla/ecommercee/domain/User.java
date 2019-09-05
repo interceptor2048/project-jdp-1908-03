@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,8 @@ public class User {
     private String username;
 
     @Column(name = "status")
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @Column(name = "userKey")
     private Long userKey;
@@ -41,7 +43,7 @@ public class User {
     @OneToMany(targetEntity = Order.class,
             cascade = CascadeType.PERSIST,
             mappedBy = "user",
-            fetch = FetchType.LAZY)
+            fetch = FetchType.EAGER)
 
     @JsonManagedReference
     private List<Order> users = new ArrayList<>();
