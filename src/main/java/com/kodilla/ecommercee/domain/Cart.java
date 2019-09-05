@@ -27,14 +27,14 @@ public class Cart {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "quantity")
-    private int quantity;
-
     @Column(name = "price")
     private BigDecimal price;
 
+    @Column(name = "quantity")
+    private Long quantity;
+
     @Column(name = "group_id")
-    private Group group;
+    private Long group;
 
     @OneToMany(
             targetEntity = Product.class,
