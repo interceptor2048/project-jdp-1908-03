@@ -5,25 +5,27 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "groups")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Entity(name = "groups_of_products")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
+    @NotNull
     @Column(name = "name")
     private String name;
 
     @OneToMany(
             targetEntity = Product.class,
-            cascade = CascadeType.PERSIST,
+            mappedBy = "group",
             fetch = FetchType.EAGER
     )
     private List<Product> products = new ArrayList<>();

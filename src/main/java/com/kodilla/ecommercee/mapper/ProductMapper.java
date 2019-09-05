@@ -37,7 +37,9 @@ public class ProductMapper {
                 productDto.getName(),
                 productDto.getDescription(),
                 productDto.getPrice(),
-                group
+                group,
+                // TODO - add order when order service will be created
+                new ArrayList<>()
         );
     }
 

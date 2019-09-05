@@ -1,43 +1,48 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.AllArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Author Kamil Seweryn
  */
-@Entity
-@Table(name = "ORDERS")
+@Entity(name = "orders")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     @Column(name = "id", unique = true)
     private Long id;
-    private String name;
 
-    public Order() {
-    }
+    @NotNull
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
-    public Order(String name) {
-        this.name = name;
-    }
+    @NotNull
+    @Column(name = "order_date")
+    private LocalDate orderDate;
 
-    public Long getId() {
-        return id;
-    }
+    @Column(name = "send_date")
+    private LocalDate sendDate;
 
-    public String getName() {
-        return name;
-    }
+    @Column(name = "delivered_date")
+    private LocalDate deliveredDate;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @ManyToMany(mappedBy = "orders")
+    private List<Product> products = new ArrayList<>();
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    //TODO Add reference to User when it is created...
+/*    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;*/
 }

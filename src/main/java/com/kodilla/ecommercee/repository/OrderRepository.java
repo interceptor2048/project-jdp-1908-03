@@ -14,5 +14,5 @@ import java.util.List;
 @Transactional
 @Repository
 public interface OrderRepository extends CrudRepository<Order, Long> {
-
+    List<Order> findAll();
 }

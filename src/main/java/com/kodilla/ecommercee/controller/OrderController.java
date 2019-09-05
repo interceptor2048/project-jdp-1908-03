@@ -3,23 +3,21 @@ package com.kodilla.ecommercee.controller;
 import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.dto.OrderDto;
 import com.kodilla.ecommercee.repository.OrderRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
-/**
- * Author Kamil Seweryn
- */
 @RestController
 @CrossOrigin("*")
 @RequestMapping(value = "v1/order")
 public class OrderController {
-    @Autowired
     private OrderRepository orderRepository;
+
+    public OrderController(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
 
     @GetMapping(value = "getOrders")
     public List<Order> getOrders() {
@@ -31,14 +29,14 @@ public class OrderController {
         return new OrderDto(1L, "EXAMPLE");
     }
 
-    @PostMapping(value = "createOrder", consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "createOrder", consumes = "application/json")
     public void createOrder(@RequestBody OrderDto orderDto) {
-        orderRepository.save(new Order(orderDto.getName()));
+        orderRepository.save(new Order());
     }
 
-    @PutMapping(value = "updateOrder")
-    public OrderDto updateOrder(@RequestBody Order order) {
-        return new OrderDto(order.getId(), order.getName());
+    @PutMapping(value = "updateOrder", consumes = "application/json")
+    public OrderDto updateOrder(@RequestBody OrderDto order) {
+        return new OrderDto();
     }
 
     @DeleteMapping(value = "deleteOrder")
