@@ -29,7 +29,7 @@ public class GroupService {
         return groupRepository.save(group);
     }
 
-    public void deleteGroup(Group group) {
-        groupRepository.delete(group);
+    public void deleteGroup(Long id) {
+        groupRepository.deleteById(id);
     }
 }

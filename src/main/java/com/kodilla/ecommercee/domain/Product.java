@@ -5,31 +5,36 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "products")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Entity(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
+    @NotNull
     @Column(name = "name")
     private String name;
 
+    @NotNull
     @Column(name = "description")
     private String description;
 
+    @NotNull
     @Column(name = "price")
     private BigDecimal price;
 
+    @NotNull
     @ManyToOne
-    @JoinColumn(name = "group_id", nullable = false)
+    @JoinColumn(name = "group_id")
     private Group group;
     
     @ManyToMany(cascade = CascadeType.ALL,
