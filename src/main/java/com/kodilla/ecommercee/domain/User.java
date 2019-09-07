@@ -23,10 +23,6 @@ public class User {
     @Column(name = "username")
     private String username;
 
-    @Column(name = "status")
-    @Enumerated(EnumType.STRING)
-    private Status status;
-
     @Column(name = "userKey")
     private Long userKey;
 

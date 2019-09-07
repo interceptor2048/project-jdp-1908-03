@@ -29,7 +29,7 @@ public class OrderRepositoryTest {
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void testCreateOrderEntity() {
         //Given
-        Order order = new Order(1L, OPEN, LocalDate.of(2019, 8, 28), LocalDate.of(2019, 8, 29), LocalDate.of(2019, 8, 30), new ArrayList<>(),new User (1L,"John",IN_PROGRESS,1L,"Example Street","example@gmail.com","741258963",new ArrayList<> ()));
+        Order order = new Order(1L, OPEN, LocalDate.of(2019, 8, 28), LocalDate.of(2019, 8, 29), LocalDate.of(2019, 8, 30), new ArrayList<>(),new User (1L,"John",1L,"Example Street","example@gmail.com","741258963",new ArrayList<> ()));
 
         //When
         orderRepository.save(order);
@@ -44,7 +44,7 @@ public class OrderRepositoryTest {
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void testReadOrderEntity() {
         //Given
-        Order order = new Order(1L, OPEN, LocalDate.of(2019, 8, 28), LocalDate.of(2019, 8, 29), LocalDate.of(2019, 8, 30), new ArrayList<>(), new User (1L,"John",IN_PROGRESS,1L,"Example Street","example@gmail.com","741258963",new ArrayList<> ()));
+        Order order = new Order(1L, OPEN, LocalDate.of(2019, 8, 28), LocalDate.of(2019, 8, 29), LocalDate.of(2019, 8, 30), new ArrayList<>(), new User (1L,"John",1L,"Example Street","example@gmail.com","741258963",new ArrayList<> ()));
 
         //When
         orderRepository.save(order);
@@ -59,11 +59,11 @@ public class OrderRepositoryTest {
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void testUpdateOrderEntity() {
         //Given
-        Order order = new Order(1L, OPEN, LocalDate.of(2019, 8, 28), LocalDate.of(2019, 8, 29), LocalDate.of(2019, 8, 30), new ArrayList<>(), new User (2L,"John",IN_PROGRESS,1L,"Example Street","example@gmail.com","741258963",new ArrayList<> ()));
+        Order order = new Order(1L, OPEN, LocalDate.of(2019, 8, 28), LocalDate.of(2019, 8, 29), LocalDate.of(2019, 8, 30), new ArrayList<>(), new User (2L,"John",1L,"Example Street","example@gmail.com","741258963",new ArrayList<> ()));
         orderRepository.save(order);
 
         //When
-        Order updatedDateOrder = new Order(1L, OPEN, LocalDate.of(2019, 7, 28), LocalDate.of(2019, 8, 29), LocalDate.of(2019, 7, 30), new ArrayList<>(), new User (2L,"John",IN_PROGRESS,1L,"Example Street","example@gmail.com","741258963",new ArrayList<> ()));
+        Order updatedDateOrder = new Order(1L, OPEN, LocalDate.of(2019, 7, 28), LocalDate.of(2019, 8, 29), LocalDate.of(2019, 7, 30), new ArrayList<>(), new User (2L,"John",1L,"Example Street","example@gmail.com","741258963",new ArrayList<> ()));
         orderRepository.save(updatedDateOrder);
         Order updateOrder = orderRepository.findById(1L).orElse(null);
 
@@ -75,7 +75,7 @@ public class OrderRepositoryTest {
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void testDeleteOrderEntity() {
         //Given
-        Order order = new Order(1L, OPEN, LocalDate.of(2019, 8, 28), LocalDate.of(2019, 8, 29), LocalDate.of(2019, 8, 30), new ArrayList<>(), new User (1L,"John",IN_PROGRESS,1L,"Example Street","example@gmail.com","741258963",new ArrayList<> ()));
+        Order order = new Order(1L, OPEN, LocalDate.of(2019, 8, 28), LocalDate.of(2019, 8, 29), LocalDate.of(2019, 8, 30), new ArrayList<>(), new User (1L,"John",1L,"Example Street","example@gmail.com","741258963",new ArrayList<> ()));
         orderRepository.save(order);
 
         //When
