@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,11 +34,11 @@ public class User {
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
-    @OneToMany(targetEntity = Order.class,
+    @OneToMany(
+            targetEntity = Order.class,
             cascade = CascadeType.PERSIST,
             mappedBy = "user",
-            fetch = FetchType.EAGER)
-
-    @JsonManagedReference
-    private List<Order> users = new ArrayList<>();
+            fetch = FetchType.EAGER
+    )
+    private List<Order> orders = new ArrayList<>();
 }
