@@ -29,12 +29,10 @@ public class CartController {
     public List<Product> getProductFromCart(@RequestParam("productId") Long productId) {
         return new ArrayList<> ();
     }
-    
     @PostMapping(value = "addProductToCart", consumes = APPLICATION_JSON_VALUE)
     public ProductDto addProductToCart(@RequestBody ProductDto productDto) {
         return new ProductDto (2L, "example product2", "description", new BigDecimal (100), (long) 2);
     }
-    
     @DeleteMapping(value = "deleteProductFromCart")
     public void deleteProductFromCard(@RequestParam ("cartId") Long cartId, @RequestParam("productId") Long productId) { }
     
