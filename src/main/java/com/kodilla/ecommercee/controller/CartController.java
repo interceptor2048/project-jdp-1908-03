@@ -23,8 +23,8 @@ public class CartController {
     @PostMapping(value = "createNewCart", consumes = APPLICATION_JSON_VALUE)
     public void createNewCart(@RequestBody CartDto cartDto) {
     }
-    @GetMapping(value = "getProductFromCart")
-    public List<Product> getProductFromCart(@RequestParam("cartId") Long cartId) {
+    @GetMapping(value = "getProductsFromCart")
+    public List<Product> getProductsFromCart(@RequestParam("cartId") Long cartId) {
         return new ArrayList<> ();
     }
     @PostMapping(value = "addProductToCart", consumes = APPLICATION_JSON_VALUE)
