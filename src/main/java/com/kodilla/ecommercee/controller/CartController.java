@@ -28,13 +28,13 @@ public class CartController {
         return new ArrayList<> ();
     }
     @PostMapping(value = "addProductToCart", consumes = APPLICATION_JSON_VALUE)
-    public void addProductToCart(@RequestBody CartDto cartDto, @RequestParam("productId") Long productId) {
+    public void addProductToCart(@RequestParam ("cartId") Long cartId, @RequestParam("productId") Long productId) {
     }
     @DeleteMapping(value = "deleteProductFromCart")
     public void deleteProductFromCard(@RequestParam ("cartId") Long cartId, @RequestParam("productId") Long productId) { }
     
     @PostMapping(value = "createOrder", consumes = APPLICATION_JSON_VALUE)
-    public void createOrder(@RequestBody CartDto cartDto) {
+    public void createOrder(@RequestParam ("cartId") Long cartId) {
     }
 }
 
