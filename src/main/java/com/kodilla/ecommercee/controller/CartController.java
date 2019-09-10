@@ -1,13 +1,11 @@
 package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.dto.OrderDto;
+import com.kodilla.ecommercee.dto.CartDto;
 import com.kodilla.ecommercee.domain.Product;
-import com.kodilla.ecommercee.dto.ProductDto;
 import com.kodilla.ecommercee.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,24 +21,20 @@ public class CartController {
     private ProductRepository productRepository;
 
     @PostMapping(value = "createNewCart", consumes = APPLICATION_JSON_VALUE)
-    public void createNewCart() {}
-    
-    @GetMapping(value = "getProductFromCart")
-    public List<Product> getProductFromCart(@RequestParam("productId") Long productId) {
+    public void createNewCart(@RequestBody CartDto cartDto) {
+    }
+    @GetMapping(value = "getProductsFromCart")
+    public List<Product> getProductsFromCart(@RequestParam("cartId") Long cartId) {
         return new ArrayList<> ();
     }
-    
     @PostMapping(value = "addProductToCart", consumes = APPLICATION_JSON_VALUE)
-    public ProductDto addProductToCart(@RequestBody ProductDto productDto) {
-        return new ProductDto (2L, "example product2", "description", new BigDecimal (100), (long) 2);
+    public void addProductToCart(@RequestParam ("cartId") Long cartId, @RequestParam("productId") Long productId) {
     }
-    
     @DeleteMapping(value = "deleteProductFromCart")
     public void deleteProductFromCard(@RequestParam ("cartId") Long cartId, @RequestParam("productId") Long productId) { }
     
     @PostMapping(value = "createOrder", consumes = APPLICATION_JSON_VALUE)
-    public OrderDto createOrder(@RequestBody ProductDto productDto) {
-        return new OrderDto ();
+    public void createOrder(@RequestParam ("cartId") Long cartId) {
     }
 }
 

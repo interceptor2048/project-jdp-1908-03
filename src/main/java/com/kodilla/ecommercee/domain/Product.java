@@ -36,12 +36,12 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;
-    
+
     @ManyToMany(cascade = CascadeType.ALL,
-                fetch = FetchType.EAGER)
+            fetch = FetchType.EAGER)
     @JoinTable(name = "products_orders",
-               joinColumns = {@JoinColumn(name = "product_id")},
-               inverseJoinColumns = {@JoinColumn(name = "order_id")})
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "order_id")})
     private List<Order> orders = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
