@@ -39,6 +39,7 @@ public class ProductMapper {
                 productDto.getPrice(),
                 group,
                 // TODO - add order when order service will be created
+                new ArrayList<>(),
                 new ArrayList<>()
         );
     }

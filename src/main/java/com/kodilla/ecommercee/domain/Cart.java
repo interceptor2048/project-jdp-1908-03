@@ -24,23 +24,20 @@ public class Cart {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
-    private String description;
-
     @Column(name = "price")
     private BigDecimal price;
 
     @Column(name = "quantity")
-    private Long quantity;
+    private Integer quantity;
 
     @Column(name = "group_id")
     private Long group;
 
-    @OneToMany(
-            targetEntity = Product.class,
-            mappedBy = "cart",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "carts_products",
+            joinColumns = {@JoinColumn(name = "cart_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id")}
     )
     List<Product> products = new ArrayList<>();
 

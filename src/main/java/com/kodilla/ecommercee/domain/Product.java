@@ -44,7 +44,6 @@ public class Product {
                inverseJoinColumns = {@JoinColumn(name = "order_id")})
     private List<Order> orders = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
+    private List<Cart> carts = new ArrayList<>();
 }
