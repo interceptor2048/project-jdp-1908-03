@@ -20,7 +20,7 @@ public class ProductTest {
     @Test
     public void getId() {
         //Given
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>());
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>(), new ArrayList<>());
 
         //When
         Long id = product.getId();
@@ -32,7 +32,7 @@ public class ProductTest {
     @Test
     public void getName() {
         //Given
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>());
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>(), new ArrayList<>());
 
         //When
         String name = product.getName();
@@ -44,7 +44,7 @@ public class ProductTest {
     @Test
     public void getDescription() {
         //Given
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>());
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>(), new ArrayList<>());
 
         //When
         String description = product.getDescription();
@@ -56,7 +56,7 @@ public class ProductTest {
     @Test
     public void getPrice() {
         //Given
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>());
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>(), new ArrayList<>());
 
         //When
         BigDecimal price = product.getPrice();
@@ -69,7 +69,7 @@ public class ProductTest {
     public void getGroup() {
         //Given
         Group group = new Group(1L, "Test", new ArrayList<>());
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>(), new ArrayList<>());
 
         //When
         Group getGroup = product.getGroup();
@@ -87,7 +87,7 @@ public class ProductTest {
         orders.add(new Order());
         orders.add(new Order());
 
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), orders);
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), orders, new ArrayList<>());
 
         //When
         int countOrders = product.getOrders().size();
@@ -99,7 +99,7 @@ public class ProductTest {
     @Test
     public void setId() {
         //Given
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>());
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>(), new ArrayList<>());
 
         //When
         product.setId(2L);
@@ -112,7 +112,7 @@ public class ProductTest {
     @Test
     public void setName() {
         //Given
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>());
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>(), new ArrayList<>());
 
         //When
         product.setName("TestTwo");
@@ -125,7 +125,7 @@ public class ProductTest {
     @Test
     public void setDescription() {
         //Given
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>());
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>(), new ArrayList<>());
 
         //When
         product.setDescription("TestTwo");
@@ -138,7 +138,7 @@ public class ProductTest {
     @Test
     public void setPrice() {
         //Given
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>());
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>(), new ArrayList<>());
 
         //When
         product.setPrice(new BigDecimal(200));
@@ -152,7 +152,7 @@ public class ProductTest {
     public void setGroup() {
         //Given
         Group group = new Group(1L, "Test", new ArrayList<>());
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>(), new ArrayList<>());
 
         //When
         group.setId(2L);
@@ -172,7 +172,7 @@ public class ProductTest {
         orders.add(new Order());
         orders.add(new Order());
 
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), orders);
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), orders, new ArrayList<>());
 
         //When
         orders.remove(0);
@@ -186,9 +186,9 @@ public class ProductTest {
     @Test
     public void equalsAndHashCode() {
         //Given
-        Product productOne = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>());
-        Product productTwo = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>());
-        Product productThree = new Product(2L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>());
+        Product productOne = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>(), new ArrayList<>());
+        Product productTwo = new Product(1L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>(), new ArrayList<>());
+        Product productThree = new Product(2L, "Test", "Test", new BigDecimal(100), new Group(), new ArrayList<>(), new ArrayList<>());
 
         //Then
         assertTrue(new ReflectionEquals(productOne, "price").matches(productTwo));
