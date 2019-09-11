@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee.repository;
 
 import com.kodilla.ecommercee.domain.Group;
+import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.domain.Product;
 import org.hamcrest.Matchers;
 import org.junit.Before;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -28,7 +30,9 @@ public class ProductRepositoryTest {
     @Before
     public void prepareDatabase() {
         Group group = new Group(1L, "Test", new ArrayList<>());
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
+        List<Order> carts = new ArrayList<>();
+
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, carts);
 
         groupRepository.save(group);
         productRepository.save(product);
