@@ -27,6 +27,7 @@ public class UserRepositoryTest {
     private UserRepository userRepository;
 
     @Test
+    @Transactional
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void testCreate() {
         //Given
@@ -49,6 +50,7 @@ public class UserRepositoryTest {
     }
 
     @Test
+    @Transactional
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void testRead() {
         //Given
@@ -80,6 +82,7 @@ public class UserRepositoryTest {
     }
 
     @Test
+    @Transactional
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void testUpdate() {
         //Given
@@ -104,6 +107,7 @@ public class UserRepositoryTest {
     }
 
     @Test
+    @Transactional
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void testDelete() {
         //Given
