@@ -18,7 +18,7 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
+    //@NotNull
     @Column(name = "id", unique = true)
     private Long id;
 
