@@ -45,7 +45,6 @@ public class ProductController {
 
     @DeleteMapping(value = "deleteProduct")
     public void deleteProduct(@RequestParam Long id) throws ProductNotFoundException {
-        productService.getProduct(id).orElseThrow(ProductNotFoundException::new);
         productService.deleteProduct(id);
     }
 }

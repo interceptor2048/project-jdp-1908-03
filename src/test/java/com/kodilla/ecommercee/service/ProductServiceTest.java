@@ -86,7 +86,7 @@ public class ProductServiceTest {
 
     @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
-    public void deleteProduct() {
+    public void deleteProduct() throws ProductNotFoundException {
         //Given
         Group group = new Group(1L, "Test", new ArrayList<>());
         Product product = new Product(null, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
