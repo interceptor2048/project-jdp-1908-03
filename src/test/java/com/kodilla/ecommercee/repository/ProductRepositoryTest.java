@@ -28,7 +28,7 @@ public class ProductRepositoryTest {
     @Before
     public void prepareDatabase() {
         Group group = new Group(1L, "Test", new ArrayList<>());
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>(), new ArrayList<>());
 
         groupRepository.save(group);
         productRepository.save(product);
@@ -39,7 +39,7 @@ public class ProductRepositoryTest {
     public void create() {
         //Given
         Group group = new Group(1L, "Test", new ArrayList<>());
-        Product product = new Product(2L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
+        Product product = new Product(2L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>(), new ArrayList<>());
 
         //When
         productRepository.save(product);
@@ -54,7 +54,7 @@ public class ProductRepositoryTest {
     public void read() {
         //Given
         Group group = new Group(1L, "Test", new ArrayList<>());
-        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>());
+        Product product = new Product(1L, "Test", "Test", new BigDecimal(100), group, new ArrayList<>(), new ArrayList<>());
 
         //When
         Product getProduct = productRepository.findById(1L).orElse(null);
@@ -72,7 +72,7 @@ public class ProductRepositoryTest {
     public void update() {
         //Given
         Group group = new Group(1L, "Test", new ArrayList<>());
-        Product product = new Product(1L, "TestTwo", "TestTwo", new BigDecimal(100), group, new ArrayList<>());
+        Product product = new Product(1L, "TestTwo", "TestTwo", new BigDecimal(100), group, new ArrayList<>(), new ArrayList<>());
 
         //When
         productRepository.save(product);
