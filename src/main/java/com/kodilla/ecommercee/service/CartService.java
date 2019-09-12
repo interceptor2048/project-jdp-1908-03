@@ -13,8 +13,8 @@ import java.util.Optional;
 @Service
 @Transactional
 public class CartService {
-    private CartRepository cartRepository;
     private ProductRepository productRepository;
+    private CartRepository cartRepository;
 
     public CartService(CartRepository cartRepository) {
         this.cartRepository = cartRepository;
