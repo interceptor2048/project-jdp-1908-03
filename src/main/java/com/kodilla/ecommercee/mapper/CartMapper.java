@@ -21,11 +21,11 @@ public class CartMapper {
     }
 
     public CartDto mapToCartDto(final Cart cart){
-        return new CartDto(cart.getId(), cart.getName(), cart.getDescription(), cart.getPrice(), cart.getQuantity(), cart.getGroup(), cart.getProducts());
+        return new CartDto(cart.getId(), cart.getName(), cart.getPrice(), cart.getQuantity(), cart.getGroup(), cart.getProducts(), cart.getUser());
     }
 
     public Cart mapToCart(final CartDto cartDto){
-        return new Cart(cartDto.getId(), cartDto.getName(), cartDto.getDescription(), cartDto.getPrice(), cartDto.getQuantity(), cartDto.getGroup(), cartDto.getProducts());
+        return new Cart(cartDto.getId(), cartDto.getName(), cartDto.getPrice(), cartDto.getQuantity(), cartDto.getGroup(), cartDto.getProducts(), cartDto.getUser());
     }
 
     public List<CartDto> mapToCartDtoList(final List<Cart> cartList){
