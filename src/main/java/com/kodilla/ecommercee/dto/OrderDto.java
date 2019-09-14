@@ -14,11 +14,11 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 public class OrderDto {
-    private Long id;
+    private Long orderId;
     private Status status;
     private LocalDate orderDate;
     private LocalDate sendDate;
     private LocalDate deliveredDate;
     private List<Product> products;
-    private User user;
+    private Long userId;
 }
