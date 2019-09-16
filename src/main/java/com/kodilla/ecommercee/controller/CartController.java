@@ -53,7 +53,6 @@ public class CartController {
         Product product = cartService.findProduct(productId).orElseThrow(CartNotFoundException::new);
         cart.getProducts().remove(product);
     }
-
 }
 
 
