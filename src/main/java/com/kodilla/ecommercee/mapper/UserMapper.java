@@ -34,14 +34,7 @@ public class UserMapper {
 
     public List<UserDto> mapToUserDtoList(List<User> userList) {
         return userList.stream()
-                .map(u -> new UserDto(
-                        u.getId(),
-                        u.getUsername(),
-                        u.getUserKey(),
-                        u.getAddress(),
-                        u.getEmail(),
-                        u.getPhoneNumber(),
-                        u.getOrders()))
+                .map(this::mapToUserDto)
                 .collect(Collectors.toList());
     }
 }

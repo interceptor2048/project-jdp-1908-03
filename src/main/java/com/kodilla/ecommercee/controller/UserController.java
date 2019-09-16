@@ -42,7 +42,7 @@ public class UserController {
 
     @DeleteMapping(value = "deleteUser")
     public void deleteUser(@RequestParam Long id) throws UserNotFoundException {
-        userMapper.mapToUserDto(userService.getUser(id).orElseThrow(UserNotFoundException::new));
+        userService.getUser(id).orElseThrow(UserNotFoundException::new);
         userService.deleteUser(id);
     }
 }
