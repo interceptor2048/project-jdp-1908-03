@@ -1,8 +1,10 @@
 package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.controller.exceptions.UserNotFoundException;
-import com.kodilla.ecommercee.domain.User;
-import com.kodilla.ecommercee.repository.UserRepository;
+import com.kodilla.ecommercee.dto.UserDto;
+import com.kodilla.ecommercee.mapper.UserMapper;
+import com.kodilla.ecommercee.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,30 +14,35 @@ import java.util.List;
 @CrossOrigin("*")
 public class UserController {
 
-    private UserRepository userRepository;
+    @Autowired
+    private UserMapper userMapper;
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    @Autowired
+    private UserService userService;
+
     @GetMapping(value = "getUser")
-    public User getUser(@RequestParam Long id) throws UserNotFoundException {
-        return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+    public UserDto getUser(@RequestParam Long id) throws UserNotFoundException {
+        return userMapper.mapToUserDto(userService.getUser(id).orElseThrow(UserNotFoundException::new));
     }
+
     @GetMapping(value = "getUsers")
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public List<UserDto> getUsers() {
+        return userMapper.mapToUserDtoList(userService.getUsers());
     }
+
     @PostMapping(value = "addUser", consumes = "application/json")
-    public void addUser(@RequestBody User user) {
-        userRepository.save(user);
+    public UserDto addUser(@RequestBody UserDto userDto) {
+        return userMapper.mapToUserDto(userService.saveUser(userMapper.mapToUser(userDto)));
     }
+
     @PutMapping(value = "updateUser", consumes = "application/json")
-    public void updateUser(@RequestBody User user) {
-        userRepository.save(user);
+    public UserDto updateUser(@RequestBody UserDto userDto) {
+        return userMapper.mapToUserDto(userService.saveUser(userMapper.mapToUser(userDto)));
     }
+
     @DeleteMapping(value = "deleteUser")
     public void deleteUser(@RequestParam Long id) throws UserNotFoundException {
-        User user = userRepository.findById(id).orElseThrow(UserNotFoundException::new);
-        userRepository.delete(user);
+        userService.getUser(id).orElseThrow(UserNotFoundException::new);
+        userService.deleteUser(id);
     }
 }
