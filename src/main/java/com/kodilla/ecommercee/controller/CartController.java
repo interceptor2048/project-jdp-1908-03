@@ -54,7 +54,3 @@ public class CartController {
         cart.getProducts().remove(product);
     }
 }
-
-
-
-

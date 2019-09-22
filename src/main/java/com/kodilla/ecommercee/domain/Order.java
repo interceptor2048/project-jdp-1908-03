@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Author Kamil Seweryn
- */
 @Entity(name = "orders")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,7 +16,6 @@ import java.util.Optional;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "id", unique = true)
     private Long id;
 
@@ -41,9 +37,11 @@ public class Order {
     @ManyToMany(mappedBy = "orders")
     private List<Product> products = new ArrayList<>();
 
-    //TODO Add reference to User when it is created...
     @NotNull
-    @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @ManyToOne(
+            fetch = FetchType.EAGER,
+            cascade= CascadeType.ALL
+    )
     @JoinColumn(name = "user_id")
     private User user;
 }
