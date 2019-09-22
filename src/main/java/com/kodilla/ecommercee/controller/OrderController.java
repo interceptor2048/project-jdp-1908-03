@@ -1,11 +1,13 @@
 package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.domain.Order;
+import com.kodilla.ecommercee.controller.exceptions.OrderNotFoundException;
 import com.kodilla.ecommercee.dto.OrderDto;
-import com.kodilla.ecommercee.repository.OrderRepository;
+import com.kodilla.ecommercee.mapper.OrderMapper;
+import com.kodilla.ecommercee.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 
@@ -13,34 +15,35 @@ import java.util.List;
 @CrossOrigin("*")
 @RequestMapping(value = "v1/order")
 public class OrderController {
-    private OrderRepository orderRepository;
 
-    public OrderController(OrderRepository orderRepository) {
-        this.orderRepository = orderRepository;
-    }
+    @Autowired
+    OrderService orderService;
+
+    @Autowired
+    OrderMapper orderMapper;
 
     @GetMapping(value = "getOrders")
-    public List<Order> getOrders() {
-        return new ArrayList<>();
+    public List<OrderDto> getOrders() {
+        return orderMapper.mapToOrderDtoList(orderService.getOrders());
     }
 
     @GetMapping(value = "getOrder")
-    public OrderDto getOrder(@RequestParam("orderId") Long orderId) {
-        return new OrderDto(1L, "EXAMPLE");
+    public OrderDto getOrder(@RequestParam("orderId") Long orderId) throws OrderNotFoundException {
+        return orderMapper.mapToOrderDto(orderService.getOrder(orderId).orElseThrow(OrderNotFoundException::new));
     }
 
     @PostMapping(value = "createOrder", consumes = "application/json")
     public void createOrder(@RequestBody OrderDto orderDto) {
-        orderRepository.save(new Order());
+        orderService.saveOrder(orderMapper.mapToOrder(orderDto));
     }
 
     @PutMapping(value = "updateOrder", consumes = "application/json")
-    public OrderDto updateOrder(@RequestBody OrderDto order) {
-        return new OrderDto();
+    public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
+        return orderMapper.mapToOrderDto(orderService.saveOrder(orderMapper.mapToOrder(orderDto)));
     }
 
     @DeleteMapping(value = "deleteOrder")
     public void deleteOrder(@RequestParam("orderId") Long orderId) {
-        orderRepository.deleteById(orderId);
+        orderService.deleteOrderById(orderId);
     }
 }
